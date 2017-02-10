@@ -51,12 +51,26 @@ export default class Presentation extends React.Component {
         <JoliSlide name="Mathieu Santostefano" pseudo="welcomattic" logo={images.jolicode} avatar={images.avatar} />
         <Slide bgColor="white">
           - Présentation Payum
+        </Slide>
+        <Slide bgColor="white">
           - Passerelles de paiement disponibles
+        </Slide>
+        <Slide bgColor="white">
           - Intégration aux frameworks
+        </Slide>
+        <Slide bgColor="white">
           - Stockages disponibles
+        </Slide>
+        <Slide bgColor="white">
           - Objets utiles
+        </Slide>
+        <Slide bgColor="white">
           - Exemple de workflow de payment simple
+        </Slide>
+        <Slide bgColor="white">
           - Comment le réaliser avec Payum (avec Be2Bill)
+        </Slide>
+        <Slide bgColor="white">
           - Bonus : 3DSecure ( [Feature/3dsecure be2bill by welcoMattic · Pull Request #625 · Payum/Payum · GitHub](https://github.com/Payum/Payum/pull/625))
         </Slide>
       </Deck>
