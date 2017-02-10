@@ -1,23 +1,7 @@
-// Import React
 import React from "react";
-
-// Import Spectacle Core tags
-import {
-  BlockQuote,
-  Cite,
-  Deck,
-  Heading,
-  ListItem,
-  List,
-  Quote,
-  Slide,
-  Text
-} from "spectacle";
-
-// Import image preloader util
+import { BlockQuote, Cite, Deck, Heading, Image, List, ListItem, Quote, Slide, Text } from "spectacle";
+import JoliSlide from './jolislide';
 import preloader from "spectacle/lib/utils/preloader";
-
-// Import theme
 import createTheme from "spectacle/lib/themes/default";
 
 // Require CSS
@@ -26,59 +10,54 @@ require("spectacle/lib/themes/default/index.css");
 
 
 const images = {
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png")
+  payum: require("../assets/payum-logo.png"),
+  jolicode: require("../assets/jolicode-logo.png"),
+  avatar: require("../assets/avatar.jpg")
 };
 
 preloader(images);
 
-const theme = createTheme({
-  primary: "white",
-  secondary: "#1F2022",
-  tertiary: "#03A9FC",
-  quartenary: "#CECECE"
-}, {
+const colors = {
+  white: "white",
+  yellow: "#f7d325",
+  black: "#2b2b2a",
+};
+
+const fonts = {
   primary: "Montserrat",
   secondary: "Helvetica"
-});
+};
+
+const theme = createTheme(colors, fonts);
+
+theme.screen.progress.bar.bar.background = colors.yellow;
 
 export default class Presentation extends React.Component {
   render() {
     return (
-      <Deck transition={["zoom", "slide"]} transitionDuration={500} theme={theme}>
-        <Slide transition={["zoom"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Spectacle Boilerplate
+      <Deck transition={[]} theme={theme} textColor="black" progress="bar">
+        <Slide bgColor="white">
+          <Image src={images.payum} width={200}/>
+          <Heading size={3} fit caps lineHeight={1} textColor="black">
+            Payum
           </Heading>
-          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            open the presentation/index.js file to get started
+          <Text margin="10px 0 0" textColor="black" size={1} fit bold>
+            Payum offers everything you need to work with payments.
+          </Text>
+          <Text margin="10px 0 0" textColor="black" size={1} fit bold>
+            From simplest use cases to very advanced ones.
           </Text>
         </Slide>
-        <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={6} textColor="primary" caps>Typography</Heading>
-          <Heading size={1} textColor="secondary">Heading 1</Heading>
-          <Heading size={2} textColor="secondary">Heading 2</Heading>
-          <Heading size={3} textColor="secondary">Heading 3</Heading>
-          <Heading size={4} textColor="secondary">Heading 4</Heading>
-          <Heading size={5} textColor="secondary">Heading 5</Heading>
-          <Text size={6} textColor="secondary">Standard text</Text>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>Standard List</Heading>
-          <List>
-            <ListItem>Item 1</ListItem>
-            <ListItem>Item 2</ListItem>
-            <ListItem>Item 3</ListItem>
-            <ListItem>Item 4</ListItem>
-          </List>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-          <BlockQuote>
-            <Quote>Example Quote</Quote>
-            <Cite>Author</Cite>
-          </BlockQuote>
+        <JoliSlide name="Mathieu Santostefano" pseudo="welcomattic" logo={images.jolicode} avatar={images.avatar} />
+        <Slide bgColor="white">
+          - Présentation Payum
+          - Passerelles de paiement disponibles
+          - Intégration aux frameworks
+          - Stockages disponibles
+          - Objets utiles
+          - Exemple de workflow de payment simple
+          - Comment le réaliser avec Payum (avec Be2Bill)
+          - Bonus : 3DSecure ( [Feature/3dsecure be2bill by welcoMattic · Pull Request #625 · Payum/Payum · GitHub](https://github.com/Payum/Payum/pull/625))
         </Slide>
       </Deck>
     );
