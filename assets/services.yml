@@ -1,0 +1,9 @@
+services:
+    app.service.payum:
+        class: 'App\Service\PayumService'
+        arguments:
+            - '@router'
+            - '@doctrine'
+            - '%be2bill_identifier%'
+            - '%be2bill_password%'
+            - '%be2bill_sandbox%'
