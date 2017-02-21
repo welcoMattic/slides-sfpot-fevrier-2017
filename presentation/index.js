@@ -18,6 +18,7 @@ const images = {
     docker: require("../assets/docker.svg"),
     magic: require("../assets/magic.gif"),
     minions: require("../assets/minions.gif"),
+    micDrop: require("../assets/mic-drop.gif"),
 };
 
 preloader(images);
@@ -140,6 +141,56 @@ export default class Presentation extends React.Component {
                     </Text>
                 </Slide>
                 <Slide bgColor="white">
+                    <Text margin="0 0 50px 0" textColor="black" fit>Actions & Requests</Text>
+                </Slide>
+                <Slide bgColor="white">
+                    <Text margin="0 0 50px 0" textColor="black" fit>Actions de base</Text>
+                    <List>
+                        <ListItem>AuthorizePaymentAction</ListItem>
+                        <ListItem>CapturePaymentAction</ListItem>
+                        <ListItem>GatewayAwareAction</ListItem>
+                        <ListItem>GetCurrencyAction</ListItem>
+                        <ListItem>GetTokenAction</ListItem>
+                        <ListItem>PayoutPayoutAction</ListItem>
+                    </List>
+                </Slide>
+                <Slide bgColor="white" notes="Bridge Symfony">
+                    <Text margin="0 0 50px 0" textColor="black" fit>Actions supplémentaires</Text>
+                    <List>
+                        <ListItem>GetHttpRequestAction</ListItem>
+                        <ListItem>ObtainCreditCardAction</ListItem>
+                        <ListItem>RenderTemplateAction</ListItem>
+                    </List>
+                </Slide>
+                <Slide bgColor="white" notes="Be2Bill">
+                    <Text margin="0 0 50px 0" textColor="black" fit>Actions supplémentaires</Text>
+                    <List>
+                        <ListItem>CaptureAction</ListItem>
+                        <ListItem>CaptureOffsiteAction</ListItem>
+                        <ListItem>ConvertPaymentAction</ListItem>
+                        <ListItem>NotifyAction</ListItem>
+                        <ListItem>StatusAction</ListItem>
+                    </List>
+                </Slide>
+                <Slide bgColor="white">
+                    <Text margin="0 0 50px 0" textColor="black" fit>Requests de base</Text>
+                    <List>
+                        <ListItem textSize="34px">Authorize</ListItem>
+                        <ListItem textSize="34px">Cancel</ListItem>
+                        <ListItem textSize="34px">Capture</ListItem>
+                        <ListItem textSize="34px">Convert</ListItem>
+                        <ListItem textSize="34px">GetCreditCardToken</ListItem>
+                        <ListItem textSize="34px">GetHttpRequest</ListItem>
+                        <ListItem textSize="34px">GetHumanStatus</ListItem>
+                        <ListItem textSize="34px">GetToken</ListItem>
+                        <ListItem textSize="34px">Notify</ListItem>
+                        <ListItem textSize="34px">ObtainCreditCard</ListItem>
+                        <ListItem textSize="34px">Payout</ListItem>
+                        <ListItem textSize="34px">Refund</ListItem>
+                        <ListItem textSize="34px">RenderTemplate</ListItem>
+                    </List>
+                </Slide>
+                <Slide bgColor="white">
                     <Text margin="0 0 50px 0" textColor="black" fit>
                         2 FormTypes pour les Cartes Bancaires
                     </Text>
@@ -160,15 +211,22 @@ export default class Presentation extends React.Component {
                     <Text margin="0 0 50px 0" textColor="black" fit>Dans quel ordre ?</Text>
                 </Slide>
                 <Slide bgColor="white">
-                    <Text margin="0 0 50px 0" textColor="black" fit>On utilise le formulaire <Code>CreditCardType</Code></Text>
+                    <Text margin="0 0 50px 0" textColor="black" fit>On utilise le formulaire CreditCardType</Text>
                 </Slide>
                 <Slide bgColor="white" notes="On valide le schema de carte, son existence, et la date d'expiration sans appel externe">
                     <Text margin="0 0 50px 0" textColor="black" fit>On valide les données</Text>
-                    <Text margin="0 0 50px 0" textColor="black" fit>(grâce aux validators Payum + Symfony (CardScheme & Luhn))</Text>
+                    <Text margin="0 0 50px 0" textColor="black" fit>(grâce aux contraintes de validation CreditCardDate, CardScheme et Luhn)</Text>
+                </Slide>
+                <Slide bgColor="white" notes="On valide le schema de carte, son existence, et la date d'expiration sans appel externe">
+                    <Text margin="0 0 50px 0" textColor="black" fit>On interroge la passerelle de paiement</Text>
                 </Slide>
                 <Slide bgColor="white">
                     <Text margin="0 0 50px 0" textColor="black" fit>On traite la réponse</Text>
-                    <Text margin="0 0 50px 0" textColor="black" fit>(<Code>captured</Code>, <Code>failed</Code>, ou redirection 3DSecure)</Text>
+                    <List>
+                        <ListItem>Captured</ListItem>
+                        <ListItem>Failed</ListItem>
+                        <ListItem>Redirection 3DSecure</ListItem>
+                    </List>
                 </Slide>
                 <Slide bgColor="white">
                     <Text margin="0 0 50px 0" textColor="black" fit>On enregistre le paiement en base de données</Text>
@@ -180,18 +238,37 @@ export default class Presentation extends React.Component {
                     <Text margin="0 0 50px 0" textColor="black" fit>Du code, du code, du code !!!</Text>
                     <Image src={images.minions} width={600}/>
                 </Slide>
-                <Slide bgColor="white" notes="On créé un service Payum">
+                <Slide bgColor="white" notes="On créé un service Payum (yml)">
                     <CodePane lang="yaml" source={require("raw-loader!../assets/services.yml")}></CodePane>
                 </Slide>
-                <Slide bgColor="white" notes="On créé un service Payum">
-                    <CodePane lang="php" source={require("raw-loader!../assets/payum-service.php")}></CodePane>
+                <Slide bgColor="white" notes="On créé un service Payum (php)">
+                    <CodePane lang="php" source={require("raw-loader!../assets/payum-service-1.php")}></CodePane>
+                </Slide>
+                <Slide bgColor="white" notes="On créé un service Payum (php)">
+                    <CodePane lang="php" source={require("raw-loader!../assets/payum-service-2.php")}></CodePane>
+                </Slide>
+                <Slide bgColor="white" notes="On créé un service Payum (php)">
+                    <CodePane lang="php" source={require("raw-loader!../assets/payum-service-3.php")}></CodePane>
+                </Slide>
+                <Slide bgColor="white" notes="On créé un service Payum (php)">
+                    <CodePane lang="php" source={require("raw-loader!../assets/payum-service-4.php")}></CodePane>
                 </Slide>
                 <Slide bgColor="white" notes="Controller de paiement">
-                    <CodePane lang="php" source={require("raw-loader!../assets/payment-controller.php")}></CodePane>
+                    <CodePane lang="php" source={require("raw-loader!../assets/payment-controller-1.php")}></CodePane>
+                </Slide>
+                <Slide bgColor="white" notes="Controller de paiement">
+                    <CodePane lang="php" source={require("raw-loader!../assets/payment-controller-2.php")}></CodePane>
+                </Slide>
+                <Slide bgColor="white" notes="Controller de paiement">
+                    <CodePane lang="php" source={require("raw-loader!../assets/payment-controller-3.php")}></CodePane>
                 </Slide>
                 <Slide bgColor="white">
-                    <Text margin="0 0 50px 0" textColor="red" fit>Bonus</Text>
-                    <Text margin="0 0 50px 0" textColor="black" fill>3DSecure (<Link href="https://github.com/Payum/Payum/pull/625">PR ouverte</Link>)</Text>
+                    <Text margin="0 0 50px 0" textColor="black" fit>Bonus 3DSecure (<Link href="https://github.com/Payum/Payum/pull/625">PR ouverte</Link>)</Text>
+                </Slide>
+                <Slide bgColor="white">
+                    <Text margin="0 0 50px 0" textColor="black" fit>Merci à tous !</Text>
+                    <Image src={images.micDrop} width={500} margin="0 0 50px 0"/>
+                    <Text margin="0 0 50px 0" textColor="black" fit>Slides : <Link href="https://goo.gl/npcC7Q">https://goo.gl/npcC7Q</Link></Text>
                 </Slide>
             </Deck>
         );
